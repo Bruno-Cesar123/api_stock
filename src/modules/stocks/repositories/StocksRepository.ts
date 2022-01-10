@@ -1,7 +1,7 @@
 import { Stock } from "../model/Stock";
 import { ICreateStockDTO, IStocksRepository } from "./IStocksRepository";
 
-class StocksRepositories implements IStocksRepository {
+class StocksRepository implements IStocksRepository {
   private stocks: Stock[];
 
   constructor() {
@@ -41,4 +41,4 @@ class StocksRepositories implements IStocksRepository {
   }
 }
 
-export { StocksRepositories };
+export { StocksRepository };

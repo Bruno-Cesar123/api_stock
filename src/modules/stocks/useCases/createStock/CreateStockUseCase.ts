@@ -1,4 +1,4 @@
-import { IStocksRepository } from "../repositories/IStocksRepository";
+import { IStocksRepository } from "../../repositories/IStocksRepository";
 
 interface IRequest {
   name: string;
@@ -8,7 +8,7 @@ interface IRequest {
   quantity: number;
 }
 
-class CreateStockService {
+class CreateStockUseCase {
   constructor(private stocksRepository: IStocksRepository) {}
 
   execute({
@@ -34,4 +34,4 @@ class CreateStockService {
   }
 }
 
-export { CreateStockService };
+export { CreateStockUseCase };

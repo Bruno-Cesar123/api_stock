@@ -1,25 +1,13 @@
 import { Router } from "express";
 
-import { StocksRepositories } from "../repositories/StocksRepository";
-import { CreateStockService } from "../services/CreateStockService";
+import { StocksRepository } from "../modules/stocks/repositories/StocksRepository";
+import { createStockController } from "../modules/stocks/useCases/createStock";
 
 const stocksRoutes = Router();
-const stocksRepository = new StocksRepositories();
+const stocksRepository = new StocksRepository();
 
 stocksRoutes.post("/", (request, response) => {
-  const { name, type, average_price, sales_price, quantity } = request.body;
-
-  const createStockService = new CreateStockService(stocksRepository);
-
-  createStockService.execute({
-    name,
-    type,
-    average_price,
-    sales_price,
-    quantity,
-  });
-
-  return response.status(201).send();
+  return createStockController.handle(request, response);
 });
 
 stocksRoutes.get("/", (request, response) => {
