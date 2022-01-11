@@ -1,4 +1,4 @@
-import { StocksRepository } from "../../repositories/StocksRepository";
+import { StocksRepository } from "../../repositories/implementations/StocksRepository";
 import { ListStocksController } from "./ListStocksController";
 import { ListStocksUseCase } from "./ListStocksUseCase";
 

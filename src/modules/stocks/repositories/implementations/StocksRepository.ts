@@ -1,5 +1,5 @@
-import { Stock } from "../model/Stock";
-import { ICreateStockDTO, IStocksRepository } from "./IStocksRepository";
+import { Stock } from "../../model/Stock";
+import { ICreateStockDTO, IStocksRepository } from "../IStocksRepository";
 
 class StocksRepository implements IStocksRepository {
   private stocks: Stock[];
