@@ -4,8 +4,18 @@ import { ICreateStockDTO, IStocksRepository } from "./IStocksRepository";
 class StocksRepository implements IStocksRepository {
   private stocks: Stock[];
 
-  constructor() {
+  private static INSTANCE: StocksRepository;
+
+  private constructor() {
     this.stocks = [];
+  }
+
+  public static getInstance(): StocksRepository {
+    if (!StocksRepository.INSTANCE) {
+      StocksRepository.INSTANCE = new StocksRepository();
+    }
+
+    return StocksRepository.INSTANCE;
   }
 
   create({
