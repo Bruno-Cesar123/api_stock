@@ -1,4 +1,4 @@
-import { Stock } from "../model/Stock";
+import { Stock } from "../entities/Stock";
 
 interface ICreateStockDTO {
   name: string;
