@@ -2,10 +2,12 @@ import { StocksRepository } from "../../repositories/implementations/StocksRepos
 import { CreateStockController } from "./CreateStockController";
 import { CreateStockUseCase } from "./CreateStockUseCase";
 
-const stocksRepository = StocksRepository.getInstance();
+export default (): CreateStockController => {
+  const stocksRepository = new StocksRepository();
 
-const createStockUseCase = new CreateStockUseCase(stocksRepository);
+  const createStockUseCase = new CreateStockUseCase(stocksRepository);
 
-const createStockController = new CreateStockController(createStockUseCase);
+  const createStockController = new CreateStockController(createStockUseCase);
 
-export { createStockController };
+  return createStockController;
+};

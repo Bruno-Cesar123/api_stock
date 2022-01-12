@@ -9,15 +9,15 @@ interface ICreateStockDTO {
 }
 
 interface IStocksRepository {
-  findByName(name: string): Stock;
-  list(): Stock[];
+  findByName(name: string): Promise<Stock>;
+  list(): Promise<Stock[]>;
   create({
     name,
     type,
     average_price,
     sales_price,
     quantity,
-  }: ICreateStockDTO): void;
+  }: ICreateStockDTO): Promise<void>;
 }
 
 export { IStocksRepository, ICreateStockDTO };

@@ -2,7 +2,7 @@ import { StocksRepository } from "../../repositories/implementations/StocksRepos
 import { ListStocksController } from "./ListStocksController";
 import { ListStocksUseCase } from "./ListStocksUseCase";
 
-const stocksRepository = StocksRepository.getInstance();
+const stocksRepository = null;
 const listStocksUseCase = new ListStocksUseCase(stocksRepository);
 const listStocksController = new ListStocksController(listStocksUseCase);
 

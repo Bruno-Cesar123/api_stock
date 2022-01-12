@@ -11,14 +11,14 @@ interface IRequest {
 class CreateStockUseCase {
   constructor(private stocksRepository: IStocksRepository) {}
 
-  execute({
+  async execute({
     name,
     type,
     average_price,
     sales_price,
     quantity,
-  }: IRequest): void {
-    const stockAlreadyExists = this.stocksRepository.findByName(name);
+  }: IRequest): Promise<void> {
+    const stockAlreadyExists = await this.stocksRepository.findByName(name);
 
     if (stockAlreadyExists) {
       throw new Error("Stock Already exists");

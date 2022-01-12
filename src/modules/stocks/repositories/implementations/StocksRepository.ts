@@ -1,51 +1,40 @@
+import { getRepository, Repository } from "typeorm";
+
 import { Stock } from "../../entities/Stock";
 import { ICreateStockDTO, IStocksRepository } from "../IStocksRepository";
 
 class StocksRepository implements IStocksRepository {
-  private stocks: Stock[];
+  private repository: Repository<Stock>;
 
-  private static INSTANCE: StocksRepository;
-
-  private constructor() {
-    this.stocks = [];
+  constructor() {
+    this.repository = getRepository(Stock);
   }
 
-  public static getInstance(): StocksRepository {
-    if (!StocksRepository.INSTANCE) {
-      StocksRepository.INSTANCE = new StocksRepository();
-    }
-
-    return StocksRepository.INSTANCE;
-  }
-
-  create({
+  async create({
     name,
     type,
     average_price,
     sales_price,
     quantity,
-  }: ICreateStockDTO): void {
-    const newStock = new Stock();
-
-    Object.assign(newStock, {
+  }: ICreateStockDTO): Promise<void> {
+    const stock = this.repository.create({
       name,
       type,
       average_price,
       sales_price,
       quantity,
-      created_at: new Date(),
-      updated_at: new Date(),
     });
 
-    this.stocks.push(newStock);
+    await this.repository.save(stock);
   }
 
-  list(): Stock[] {
-    return this.stocks;
+  async list(): Promise<Stock[]> {
+    const stocks = await this.repository.find();
+    return stocks;
   }
 
-  findByName(name: string): Stock {
-    const stock = this.stocks.find(stock => stock.name === name);
+  async findByName(name: string): Promise<Stock> {
+    const stock = await this.repository.findOne({ name });
 
     return stock;
   }
