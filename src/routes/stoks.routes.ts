@@ -1,16 +1,14 @@
 import { Router } from "express";
 
 import { CreateStockController } from "../modules/stocks/useCases/createStock/CreateStockController";
-import { listStocksController } from "../modules/stocks/useCases/listStocks";
+import { ListStocksController } from "../modules/stocks/useCases/listStocks/ListStocksController";
 
 const stocksRoutes = Router();
 
 const createStockController = new CreateStockController();
+const listStocksController = new ListStocksController();
 
 stocksRoutes.post("/", createStockController.handle);
-
-stocksRoutes.get("/", (request, response) => {
-  return listStocksController.handle(request, response);
-});
+stocksRoutes.get("/", listStocksController.handle);
 
 export { stocksRoutes };
