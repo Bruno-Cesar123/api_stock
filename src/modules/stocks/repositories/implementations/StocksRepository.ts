@@ -38,6 +38,18 @@ class StocksRepository implements IStocksRepository {
 
     return stock;
   }
+
+  async findById(id: string): Promise<Stock> {
+    const stock = await this.repository.findOne({ id });
+
+    return stock;
+  }
+
+  async deleteStock(id: string): Promise<void> {
+    const stock = await this.repository.findOne({ id });
+
+    await this.repository.remove(stock);
+  }
 }
 
 export { StocksRepository };
