@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { IStocksRepository } from "../../repositories/IStocksRepository";
 
 interface IRequest {
@@ -8,8 +10,12 @@ interface IRequest {
   quantity: number;
 }
 
+@injectable()
 class CreateStockUseCase {
-  constructor(private stocksRepository: IStocksRepository) {}
+  constructor(
+    @inject("StocksRepository")
+    private stocksRepository: IStocksRepository,
+  ) {}
 
   async execute({
     name,
