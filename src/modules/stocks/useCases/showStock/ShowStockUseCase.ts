@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/AppError";
 import { Stock } from "../../entities/Stock";
 import { IStocksRepository } from "../../repositories/IStocksRepository";
 
@@ -18,7 +19,7 @@ class ShowStockUseCase {
     const stock = await this.stocksRepository.findById(id);
 
     if (!stock) {
-      throw new Error("Stock does not exists");
+      throw new AppError("Stock does not exists");
     }
 
     return stock;

@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/AppError";
 import { IStocksRepository } from "../../repositories/IStocksRepository";
 
 interface IRequest {
@@ -17,7 +18,7 @@ class DeleteStockUseCase {
     const stock = await this.stocksRepository.findById(id);
 
     if (!stock) {
-      throw new Error("Stock does not exists");
+      throw new AppError("Stock does not exists");
     }
 
     await this.stocksRepository.deleteStock(id);

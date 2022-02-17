@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/AppError";
 import { IStocksRepository } from "../../repositories/IStocksRepository";
 
 interface IRequest {
@@ -27,7 +28,7 @@ class CreateStockUseCase {
     const stockAlreadyExists = await this.stocksRepository.findByName(name);
 
     if (stockAlreadyExists) {
-      throw new Error("Stock Already exists");
+      throw new AppError("Stock Already exists");
     }
 
     this.stocksRepository.create({
