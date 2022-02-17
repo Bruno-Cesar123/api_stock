@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import { CreateStockController } from "../modules/stocks/useCases/createStock/CreateStockController";
 import { DeleteStockController } from "../modules/stocks/useCases/deleteStock/DeleteStockController";
 import { ListStocksController } from "../modules/stocks/useCases/listStocks/ListStocksController";
@@ -12,6 +13,7 @@ const listStocksController = new ListStocksController();
 const deleteStockController = new DeleteStockController();
 const showStockController = new ShowStockController();
 
+stocksRoutes.use(ensureAuthenticated);
 stocksRoutes.post("/", createStockController.handle);
 stocksRoutes.get("/", listStocksController.handle);
 stocksRoutes.delete("/:id", deleteStockController.handle);
