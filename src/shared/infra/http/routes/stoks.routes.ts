@@ -1,10 +1,10 @@
 import { Router } from "express";
 
+import { CreateStockController } from "@modules/stocks/useCases/createStock/CreateStockController";
+import { DeleteStockController } from "@modules/stocks/useCases/deleteStock/DeleteStockController";
+import { ListStocksController } from "@modules/stocks/useCases/listStocks/ListStocksController";
+import { ShowStockController } from "@modules/stocks/useCases/showStock/ShowStockController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { CreateStockController } from "../modules/stocks/useCases/createStock/CreateStockController";
-import { DeleteStockController } from "../modules/stocks/useCases/deleteStock/DeleteStockController";
-import { ListStocksController } from "../modules/stocks/useCases/listStocks/ListStocksController";
-import { ShowStockController } from "../modules/stocks/useCases/showStock/ShowStockController";
 
 const stocksRoutes = Router();
 

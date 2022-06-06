@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
-import { Stock } from "../../entities/Stock";
-import { IStocksRepository } from "../../repositories/IStocksRepository";
+import { AppError } from "@shared/errors/AppError";
+import { Stock } from "@modules/stocks/infra/typeorm/entities/Stock";
+import { IStocksRepository } from "@modules/stocks/repositories/IStocksRepository";
 
 interface IRequest {
   id: string;

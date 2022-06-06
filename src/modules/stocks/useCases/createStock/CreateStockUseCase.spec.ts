@@ -1,5 +1,6 @@
-import { AppError } from "../../../../errors/AppError";
-import { StocksRepositoryInMemory } from "../../repositories/in-memory/StocksRepositoryInMemory";
+import { AppError } from "@shared/errors/AppError";
+import { StocksRepositoryInMemory } from "@modules/stocks/repositories/in-memory/StocksRepositoryInMemory";
+
 import { CreateStockUseCase } from "./CreateStockUseCase";
 
 let createStockUseCase: CreateStockUseCase;

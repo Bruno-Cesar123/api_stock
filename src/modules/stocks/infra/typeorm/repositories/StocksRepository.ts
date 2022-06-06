@@ -1,7 +1,8 @@
+import { ICreateStockDTO, IStocksRepository } from "@modules/stocks/repositories/IStocksRepository";
 import { getRepository, Repository } from "typeorm";
 
-import { Stock } from "../../entities/Stock";
-import { ICreateStockDTO, IStocksRepository } from "../IStocksRepository";
+import { Stock } from "../entities/Stock";
+
 
 class StocksRepository implements IStocksRepository {
   private repository: Repository<Stock>;

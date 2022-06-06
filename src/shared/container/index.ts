@@ -1,9 +1,10 @@
 import { container } from "tsyringe";
 
-import { UsersRepository } from "../../modules/accounts/repositories/implementations/UsersRepository";
-import { IUsersRepository } from "../../modules/accounts/repositories/IUsersRepository";
-import { StocksRepository } from "../../modules/stocks/repositories/implementations/StocksRepository";
-import { IStocksRepository } from "../../modules/stocks/repositories/IStocksRepository";
+import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { StocksRepository } from "@modules/stocks/infra/typeorm/repositories/StocksRepository";
+import { IStocksRepository } from "@modules/stocks/repositories/IStocksRepository";
+import './providers/StorageProvider';
 
 container.registerSingleton<IStocksRepository>(
   "StocksRepository",

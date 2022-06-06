@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import { Stock } from "../../entities/Stock";
-import { IStocksRepository } from "../../repositories/IStocksRepository";
+import { Stock } from "@modules/stocks/infra/typeorm/entities/Stock";
+import { IStocksRepository } from "@modules/stocks/repositories/IStocksRepository";
 
 @injectable()
 class ListStocksUseCase {

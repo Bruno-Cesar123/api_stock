@@ -1,4 +1,5 @@
-import { Stock } from "../../entities/Stock";
+
+import { Stock } from "@modules/stocks/infra/typeorm/entities/Stock";
 import { ICreateStockDTO, IStocksRepository } from "../IStocksRepository";
 
 class StocksRepositoryInMemory implements IStocksRepository {
@@ -15,9 +16,7 @@ class StocksRepositoryInMemory implements IStocksRepository {
   }
 
   async list(): Promise<Stock[]> {
-    const all = this.stocks;
-
-    return all;
+    return this.stocks;
   }
 
   async create({

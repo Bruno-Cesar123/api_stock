@@ -1,8 +1,7 @@
+import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { AppError } from "@shared/errors/AppError";
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-
-import { AppError } from "../errors/AppError";
-import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
 
 interface IPayload {
   sub: string;
@@ -24,7 +23,7 @@ export async function ensureAuthenticated(
   try {
     const { sub: user_id } = verify(
       token,
-      "e29e1239b7488e1a53cd3b2635af7f3d",
+      `${process.env.SECRET_TOKEN}`,
     ) as IPayload;
 
     const usersRepository = new UsersRepository();
@@ -40,6 +39,8 @@ export async function ensureAuthenticated(
     };
 
     next();
+
+    
   } catch (err) {
     throw new AppError("Invalid token!", 401);
   }

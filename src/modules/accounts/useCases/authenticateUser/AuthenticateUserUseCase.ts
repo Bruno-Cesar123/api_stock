@@ -2,8 +2,8 @@ import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { AppError } from "@shared/errors/AppError";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 
 interface IRequest {
   email: string;
@@ -38,17 +38,14 @@ class AuthenticateUserUseCase {
       throw new AppError("Email or password incorrect");
     }
 
-    const token = sign({}, "e29e1239b7488e1a53cd3b2635af7f3d", {
+    const token = sign({}, `${process.env.SECRET_TOKEN}`, {
       subject: user.id,
-      expiresIn: "1d",
+      expiresIn: process.env.EXPIRES_DAY,
     });
 
     const tokenReturn: IResponse = {
       token,
-      user: {
-        name: user.name,
-        email: user.email,
-      },
+      user,
     };
 
     return tokenReturn;
